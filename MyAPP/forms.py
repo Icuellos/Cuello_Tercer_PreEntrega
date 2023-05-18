@@ -13,4 +13,6 @@ class CrearNuevoProyecto(forms.Form):
 # Eliminar desde aqui en caso de error    
 class CrearNuevaLiga(forms.Form):
     name = forms.CharField(label="Nombre de la Liga", max_length=200)    
-     
+    
+
+    

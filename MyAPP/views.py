@@ -13,21 +13,11 @@ def about(request):
     username = "icuello"
     return render(request, "About.html", {'username': username})
 
-def Saludar(request):
-    return HttpResponse("<h2>Biendenivo a MyAPP</h2>")
 
 def Proyectos(request):
    # Proyectos = list(Proyecto.objects.values())
    Ligas = Liga.objects.all()
    return render(request, 'Proyectos.html', {'Ligas': Ligas})
-
-def Cuadros(request):
-    return render(request, 'Cuadros.html')
-
-def Equipos(request):
-   # Proyectos = list(Proyecto.objects.values())
-   #Equipos = equipos.objects.all()
-   return render(request, 'Equipos.html', {'Equipos': Equipos})
 
 def Crear_form(request):
    # Proyectos = list(Proyecto.objects.values())
@@ -47,7 +37,6 @@ def Crear_Proyecto(request):
                   {'form': CrearNuevoProyecto()
     })
         
-#En caso de error eliminar desde aqui
 def Crear_Liga(request):
     if request.method == 'POST':
         form = CrearNuevaLiga(request.POST)
@@ -61,6 +50,7 @@ def Crear_Liga(request):
         form = CrearNuevaLiga()  
 
     return render(request, 'Crear_Liga.html', {'form': form})
+
     
 def BusquedaLiga(request):
     return render(request, 'MyAPP/Busqueda_Liga.html')   
