@@ -5,17 +5,13 @@
 <h1>Equipos</h1>
 
 {% for equipo in equipos %}
-
-<div>
-<h1>{{equipo.name}}</h1>
-<button>
-    Delete
-</button>
-<button>
-    ✅
-</button>
-</div>
-
-{% endfor %} 
+  <div>
+    <h1>{{ equipo.name }}</h1>
+    <form method="post" action="{% url 'eliminar_equipo' equipo.id %}">
+      {% csrf_token %}
+      <button type="submit">Delete</button>
+    </form>
+  </div>
+{% endfor %}
 
 {% endblock %}
