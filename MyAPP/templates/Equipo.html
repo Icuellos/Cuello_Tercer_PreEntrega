@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Equipos</h1>
+
+{% for equipo in equipos %}
+
+<div>
+<h1>{{equipo.name}}</h1>
+<button>
+    Delete
+</button>
+<button>
+    ✅
+</button>
+</div>
+
+{% endfor %} 
+
+{% endblock %}

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Liga
+from .models import Liga, Equipos
 
 class CrearNuevoFormulario(forms.Form):
     title = forms.CharField(label="Nombre", max_length=200)
@@ -12,7 +12,10 @@ class CrearNuevoProyecto(forms.Form):
     
 # Eliminar desde aqui en caso de error    
 class CrearNuevaLiga(forms.Form):
-    name = forms.CharField(label="Nombre de la Liga", max_length=200)    
+    name = forms.CharField(label="Nombre de la Liga", max_length=200)   
+    
+class CrearNuevoEquipo(forms.Form):
+    name = forms.CharField(label="Nombre del Equipo", max_length=200)     
     
 
     

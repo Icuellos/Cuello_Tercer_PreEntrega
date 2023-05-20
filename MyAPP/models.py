@@ -8,12 +8,11 @@ class Proyecto(models.Model):
          return self.name
 
 class Equipos(models.Model):    
-    Nombre = models.CharField(max_length=200)
-    Descripcion = models.TextField()
-    proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE)
-    
+    name = models.CharField(max_length=200)
+
     def __str__(self):
-         return self.Nombre + ' - ' + self.proyecto.name
+         return self.name
+      
    
 class Puntuacion(models.Model):    
      Puntos = models.CharField(max_length=200)
