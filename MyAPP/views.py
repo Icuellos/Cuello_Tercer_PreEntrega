@@ -92,4 +92,12 @@ def detalle_equipo(request, equipo_id):
 #    equipo = get_object_or_404(Equipos, id=equipo_id)
 #    return render(request, 'detalle_equipo.html', {'equipo': equipo})    
 
+#PARA ELIMINAR UNA LIGA
+def eliminar_liga(request, liga_id):
+    liga = Liga.objects.get(id=liga_id)
+    liga.delete()
+    return redirect('Proyectos')
+
+
+
 

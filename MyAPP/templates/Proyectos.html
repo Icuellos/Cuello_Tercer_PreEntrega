@@ -5,18 +5,15 @@
 <h1>Ligas</h1>
 
 {% for Liga in Ligas %}
-
 <div>
-<h1>{{Liga.name}}</h1>
-<button>
-    Delete
-</button>
-<button>
-    ✅
-</button>
+  <h1>{{ Liga.name }}</h1>
+  <form method="post" action="{% url 'eliminar_liga' Liga.id %}">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+  </form>
+  <button>✅</button>
 </div>
-
-{% endfor %} 
+{% endfor %}
 
 {% endblock %}
 

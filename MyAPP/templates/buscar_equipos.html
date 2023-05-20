@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Resultado de la búsqueda de equipos</h1>
+    <h1>Busca tu equipo!!</h1>
 
     <form method="GET" action="{% url 'buscar_equipos' %}">
         <input type="text" name="query" placeholder="Buscar equipo...">
@@ -17,7 +17,7 @@
             {% endfor %}
         </ul>
     {% else %}
-        <p>No se encontraron equipos.</p>
+        <p>No se encontraron equipos. Intenta nuevamente!!.</p>
     {% endif %}
 {% endblock %}
 
