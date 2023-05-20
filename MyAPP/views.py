@@ -2,7 +2,7 @@
 from django.http import HttpResponse, JsonResponse
 from .models import Proyecto, Equipos, Liga
 from django.shortcuts import render, redirect
-from .forms import CrearNuevoFormulario, CrearNuevoProyecto, CrearNuevaLiga, CrearNuevoEquipo
+from .forms import CrearNuevoFormulario, CrearNuevoProyecto, CrearNuevaLiga, CrearNuevoEquipo, BuscarEquipoForm
 # Create your views here.
 def index(request):
     title = "Futbol infantil Uruguayo!!"
@@ -71,28 +71,18 @@ def Crear_Equipo(request):
 def Equipo(request):
     equipos = Equipos.objects.all()
     return render(request, 'Equipo.html', {'equipos': equipos})    
-#def Equipo(request):
-#    if request.method == 'POST':
-#        form = CrearNuevoEquipo(request.POST)
-#        if form.is_valid():
-#            nombre_equipo = form.cleaned_data['nombre_equipo']
-#            equipo = Equipo(name=nombre_equipo)
-#            equipo.save()
-#            return HttpResponse('Equipo creado exitosamente')
-#    else:
-#        form = CrearNuevoEquipo()
-#    
-#    return render(request, 'Equipo.html', {'form': form})   
+ 
 
-
-
+def buscar_equipos(request):
+    if request.method == 'POST':
+        termino_busqueda = request.POST.get('termino_busqueda')
+        equipos = Equipo.objects.filter(name__icontains=termino_busqueda)
+        return render(request, 'buscar_equipos.html', {'equipos': equipos})
+    else:
+        return render(request, 'buscar_equipos.html')
     
-def BusquedaLiga(request):
-    return render(request, 'MyAPP/Busqueda_Liga.html')   
-
-def buscar(request):
-    respuesta = f"Estoy buscando la liga número: {Liga}"
-   
-    return HttpResponse(respuesta)
+def detalle_equipo(request, equipo_id):
+    equipo = Equipos.objects.get(id=equipo_id)
+    return render(request, 'detalle_equipo.html', {'equipo': equipo})    
 
 
