@@ -74,12 +74,15 @@ def Equipo(request):
  
 
 def buscar_equipos(request):
-    if request.method == 'POST':
-        termino_busqueda = request.POST.get('termino_busqueda')
-        equipos = Equipo.objects.filter(name__icontains=termino_busqueda)
+    if request.method == 'GET':
+        termino_busqueda = request.GET.get('query')
+        if termino_busqueda:
+            equipos = Equipos.objects.filter(name__icontains=termino_busqueda)
+        else:
+            equipos = []
         return render(request, 'buscar_equipos.html', {'equipos': equipos})
-    else:
-        return render(request, 'buscar_equipos.html')
+
+        
     
 def detalle_equipo(request, equipo_id):
     equipo = Equipos.objects.get(id=equipo_id)

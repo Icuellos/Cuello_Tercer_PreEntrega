@@ -11,7 +11,7 @@
 
 {% if equipos %}
     <ul>
-        {% for equipo in equipos %}
+        {% for equipo in Equipos %}
             <li>
                 <a href="{% url 'detalle_equipo' equipo.id %}">{{ equipo.name }}</a>
             </li>
