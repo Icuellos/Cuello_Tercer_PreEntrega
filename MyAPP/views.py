@@ -1,7 +1,7 @@
 
 from django.http import HttpResponse, JsonResponse
 from .models import Proyecto, Equipos, Liga
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CrearNuevoFormulario, CrearNuevoProyecto, CrearNuevaLiga, CrearNuevoEquipo, BuscarEquipoForm
 # Create your views here.
 def index(request):
@@ -74,18 +74,22 @@ def Equipo(request):
  
 
 def buscar_equipos(request):
-    if request.method == 'GET':
-        termino_busqueda = request.GET.get('query')
-        if termino_busqueda:
-            equipos = Equipos.objects.filter(name__icontains=termino_busqueda)
-        else:
-            equipos = []
-        return render(request, 'buscar_equipos.html', {'equipos': equipos})
+    query = request.GET.get('query')
+    equipos = None
+
+    if query is not None:
+        equipos = Equipos.objects.filter(name__icontains=query)
+
+    return render(request, 'buscar_equipos.html', {'equipos': equipos, 'query': query})
+
 
         
-    
 def detalle_equipo(request, equipo_id):
     equipo = Equipos.objects.get(id=equipo_id)
-    return render(request, 'detalle_equipo.html', {'equipo': equipo})    
+    return render(request, 'detalle_equipo.html', {'equipo': equipo})  
+  
+#def detalle_equipo(request, equipo_id):
+#    equipo = get_object_or_404(Equipos, id=equipo_id)
+#    return render(request, 'detalle_equipo.html', {'equipo': equipo})    
 
 
