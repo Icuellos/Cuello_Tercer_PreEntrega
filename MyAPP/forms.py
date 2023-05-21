@@ -1,5 +1,5 @@
 from django import forms
-from .models import Liga, Equipos
+from .models import Liga, Equipos, Proyecto
 
 class CrearNuevoFormulario(forms.Form):
     title = forms.CharField(label="Nombre", max_length=200)
@@ -27,5 +27,14 @@ class CrearNuevoEquipo(forms.ModelForm):
        
 class BuscarEquipoForm(forms.Form):
     termino_busqueda = forms.CharField(label='Buscar equipo', max_length=100)    
+    
+class BuscarFormulario(forms.Form):
+    OPCIONES_BUSQUEDA = [
+        ('equipo', 'Equipo'),
+        ('liga', 'Liga'),
+    ]
+    
+    termino = forms.CharField(label='Término de búsqueda')
+    tipo_busqueda = forms.ChoiceField(label='Tipo de búsqueda', choices=OPCIONES_BUSQUEDA)   
 
     

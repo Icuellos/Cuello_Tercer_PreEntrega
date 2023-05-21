@@ -12,8 +12,7 @@ class Equipos(models.Model):
 
     def __str__(self):
          return self.name
-      
-   
+    
 class Puntuacion(models.Model):    
      Puntos = models.CharField(max_length=200)
      proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE)
@@ -28,7 +27,6 @@ class Goleadores(models.Model):
      def __str__(self):
          return self.Nombre  
      
-   
 class Estadios(models.Model):    
      Nombre = models.CharField(max_length=200)
      proyecto =models.ForeignKey(Proyecto, on_delete=models.CASCADE)  

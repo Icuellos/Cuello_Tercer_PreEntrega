@@ -15,5 +15,6 @@ urlpatterns = [
     path('eliminar_liga/<int:liga_id>/', views.eliminar_liga, name='eliminar_liga'),
     path('eliminar_equipo/<int:equipo_id>/', views.eliminar_equipo, name='eliminar_equipo'),
     path('liga/<int:liga_id>/', views.detalle_liga, name='detalle_liga'),
+    path('buscar/', views.buscar, name='buscar'),
 
     ]

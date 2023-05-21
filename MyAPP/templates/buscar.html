@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Buscar Equipos o Ligas</h1>
+
+    <form method="POST" action="{% url 'buscar' %}">
+        {% csrf_token %}
+        <div>
+            {{ form.termino.label_tag }}
+            {{ form.termino }}
+        </div>
+        <div>
+            {{ form.tipo_busqueda.label_tag }}
+            {{ form.tipo_busqueda }}
+        </div>
+        <button type="submit">Buscar</button>
+    </form>
+
+    {% if resultados %}
+        <h2>Resultados:</h2>
+        <ul>
+            {% for resultado in resultados %}
+                <li>{{ resultado.name }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No se encontraron resultados.</p>
+    {% endif %}
+{% endblock %}

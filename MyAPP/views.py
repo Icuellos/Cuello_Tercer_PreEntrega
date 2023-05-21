@@ -2,7 +2,7 @@
 from django.http import HttpResponse, JsonResponse
 from .models import Proyecto, Equipos, Liga
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import CrearNuevoFormulario, CrearNuevoProyecto, CrearNuevaLiga, CrearNuevoEquipo, BuscarEquipoForm
+from .forms import CrearNuevoFormulario, CrearNuevoProyecto, CrearNuevaLiga, CrearNuevoEquipo, BuscarEquipoForm, BuscarFormulario
 # Create your views here.
 def index(request):
     title = "Futbol infantil Uruguayo!!"
@@ -12,7 +12,6 @@ def index(request):
 def about(request):
     username = "icuello"
     return render(request, "About.html", {'username': username})
-
 
 def Crear_form(request):
    # Proyectos = list(Proyecto.objects.values())
@@ -98,8 +97,6 @@ def buscar_equipos(request):
 
     return render(request, 'buscar_equipos.html', {'equipos': equipos, 'query': query})
 
-
-        
 def detalle_equipo(request, equipo_id):
     equipo = Equipos.objects.get(id=equipo_id)
     return render(request, 'detalle_equipo.html', {'equipo': equipo})  
@@ -126,6 +123,30 @@ def detalle_liga(request, liga_id):
     equipos = liga.equipos.all()
     return render(request, 'detalle_liga.html', {'liga': liga, 'equipos': equipos})
 
+def buscar(request):
+    form = BuscarFormulario()
+
+    if request.method == 'POST':
+        form = BuscarFormulario(request.POST)
+        if form.is_valid():
+            termino = form.cleaned_data['termino']
+            tipo_busqueda = form.cleaned_data['tipo_busqueda']
+
+            # Realizar la búsqueda y obtener los resultados
+
+            return render(request, 'buscar.html', {'form': form, 'resultados': resultados})
+
+    return render(request, 'buscar.html', {'form': form})
 
 
+def crear_nuevo(request):
+    if request.method == 'POST':
+        formulario = CrearNuevoFormulario(request.POST)
+        if formulario.is_valid():
+            # Guardar el formulario y redireccionar
+            formulario.save()
+            return redirect('index')
+    else:
+        formulario = CrearNuevoFormulario()
+    return render(request, 'crear_nuevo.html', {'formulario': formulario})
 
