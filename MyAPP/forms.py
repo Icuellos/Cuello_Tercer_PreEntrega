@@ -26,15 +26,14 @@ class CrearNuevoEquipo(forms.ModelForm):
         fields = ['name', 'liga']
        
 class BuscarEquipoForm(forms.Form):
-    termino_busqueda = forms.CharField(label='Buscar equipo', max_length=100)    
+    termino_busqueda = forms.CharField(label='Buscar equipo', max_length=100)  
     
 class BuscarFormulario(forms.Form):
     OPCIONES_BUSQUEDA = [
         ('equipo', 'Equipo'),
         ('liga', 'Liga'),
     ]
-    
-    termino = forms.CharField(label='Término de búsqueda')
-    tipo_busqueda = forms.ChoiceField(label='Tipo de búsqueda', choices=OPCIONES_BUSQUEDA)   
 
+    termino = forms.CharField(label='Término de búsqueda')
+    tipo_busqueda = forms.ChoiceField(label='Tipo de búsqueda', choices=OPCIONES_BUSQUEDA)
     

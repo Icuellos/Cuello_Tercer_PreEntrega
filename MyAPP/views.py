@@ -132,9 +132,12 @@ def buscar(request):
             termino = form.cleaned_data['termino']
             tipo_busqueda = form.cleaned_data['tipo_busqueda']
 
-            # Realizar la búsqueda y obtener los resultados
-
-            return render(request, 'buscar.html', {'form': form, 'resultados': resultados})
+            if tipo_busqueda == 'equipo':
+                equipos = Equipos.objects.filter(name__icontains=termino)
+                return render(request, 'buscar.html', {'form': form, 'equipos': equipos, 'tipo_busqueda': tipo_busqueda, 'termino': termino})
+            elif tipo_busqueda == 'liga':
+                ligas = Liga.objects.filter(name__icontains=termino)
+                return render(request, 'buscar.html', {'form': form, 'ligas': ligas, 'tipo_busqueda': tipo_busqueda, 'termino': termino})
 
     return render(request, 'buscar.html', {'form': form})
 
