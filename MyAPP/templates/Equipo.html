@@ -9,9 +9,10 @@
     <h1>{{ equipo.name }}</h1>
     <form method="post" action="{% url 'eliminar_equipo' equipo.id %}">
       {% csrf_token %}
-      <button type="submit">Delete</button>
+      <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este equipo?')">Delete</button> 
     </form>
-  </div>
+  </div> 
 {% endfor %}
 
 {% endblock %}
+#Agegando mensaje de confirmaión para eliminar equipo
