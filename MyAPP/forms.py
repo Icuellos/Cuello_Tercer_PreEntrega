@@ -34,6 +34,6 @@ class BuscarFormulario(forms.Form):
         ('liga', 'Liga'),
     ]
 
-    termino = forms.CharField(label='Término de búsqueda')
-    tipo_busqueda = forms.ChoiceField(label='Tipo de búsqueda', choices=OPCIONES_BUSQUEDA)
+    termino = forms.CharField(label='Ingresar dato!!')
+    tipo_busqueda = forms.ChoiceField(label='Selecciona Equipo o Liga!!', choices=OPCIONES_BUSQUEDA)
     
