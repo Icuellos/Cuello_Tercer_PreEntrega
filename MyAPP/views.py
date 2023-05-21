@@ -120,6 +120,12 @@ def eliminar_equipo(request, equipo_id):
     equipo.delete()
     return redirect('Equipo')
 
+#Para crear una vista de los detalles de la liga
+def detalle_liga(request, liga_id):
+    liga = get_object_or_404(Liga, id=liga_id)
+    equipos = liga.equipos.all()
+    return render(request, 'detalle_liga.html', {'liga': liga, 'equipos': equipos})
+
 
 
 

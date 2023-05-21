@@ -4,10 +4,10 @@
 
 <h1>Ligas</h1>
 
-{% for Liga in Ligas %}
+{% for liga in Ligas %}
 <div>
-  <h1>{{ Liga.name }}</h1>
-  <form method="post" action="{% url 'eliminar_liga' Liga.id %}">
+  <a href="{% url 'detalle_liga' liga.id %}"><h1>{{ liga.name }}</h1></a>
+  <form method="post" action="{% url 'eliminar_liga' liga.id %}">
     {% csrf_token %}
     <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar esta liga?')">Delete</button>
   </form>
@@ -16,6 +16,7 @@
 {% endfor %}
 
 {% endblock %}
+
 
 
 
