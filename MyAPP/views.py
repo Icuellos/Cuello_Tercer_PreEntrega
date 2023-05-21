@@ -54,13 +54,29 @@ def Crear_Liga(request):
 #def Equipo(request):
     #equipos = Equipos.objects.all()
     #return render(request, 'Equipo.html', {'equipos': equipos}) 
-
 def Crear_Equipo(request):
+    ligas = Liga.objects.all()
+
+    if request.method == 'POST':
+        form = CrearNuevoEquipo(request.POST)
+        if form.is_valid():
+            equipo = form.save(commit=False)
+            equipo.liga = form.cleaned_data['liga']
+            equipo.save()
+            return redirect('Equipo')
+    else:
+        form = CrearNuevoEquipo()
+
+    return render(request, 'crear_equipo.html', {'form': form, 'ligas': ligas})
+
+#def Crear_Equipo(request):
     if request.method == 'POST':
          form = CrearNuevoEquipo(request.POST)
          if form.is_valid():
             name = form.cleaned_data['name']
-            equipo = Equipos(name=name)
+            liga = form.cleaned_data['liga']
+            equipo = Equipos(name=name, liga=liga)
+            #equipo = Equipos(name=name) comentamos esto para ver si podemos guardar equpo en ligas
             equipo.save()
             return redirect('Equipo')   
     else: 

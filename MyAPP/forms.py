@@ -14,8 +14,16 @@ class CrearNuevoProyecto(forms.Form):
 class CrearNuevaLiga(forms.Form):
     name = forms.CharField(label="Nombre de la Liga", max_length=200)   
     
-class CrearNuevoEquipo(forms.Form):
-    name = forms.CharField(label="Nombre del Equipo", max_length=200)  
+#class CrearNuevoEquipo(forms.Form):
+#    name = forms.CharField(label="Nombre del Equipo", max_length=200)
+#    liga = forms.ModelChoiceField(queryset=Liga.objects.all(), label='Liga')  
+class CrearNuevoEquipo(forms.ModelForm):
+    name = forms.CharField(label="Nombre del Equipo", max_length=200)
+    liga = forms.ModelChoiceField(queryset=Liga.objects.all(), label='Liga')
+
+    class Meta:
+        model = Equipos
+        fields = ['name', 'liga']
        
 class BuscarEquipoForm(forms.Form):
     termino_busqueda = forms.CharField(label='Buscar equipo', max_length=100)    
