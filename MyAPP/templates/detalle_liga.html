@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{{ liga.name }}</h1>
+    <h1>Detalles de la Liga: {{ liga.name }}</h1>
 
     <h2>Equipos:</h2>
-    {% for equipo in equipos %}
-        <div>
-            <h3>{{ equipo.name }}</h3>
-        </div>
-    {% endfor %}
+    {% if equipos %}
+        <ul>
+            {% for equipo in equipos %}
+                <li>{{ equipo.name }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay equipos registrados para esta liga.</p>
+    {% endif %}
 {% endblock %}
